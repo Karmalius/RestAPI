@@ -6,8 +6,8 @@ var app = express();
 // Tuodaan moduuli ohjelmaan
 const MongoClient = require("mongodb").MongoClient;
 
-// Määritellään salasana ja yhteysosoite tietokantaan (tämän saa MongoDB Atlas-palvelusta)
-const passwd = "m001-mongodb-basics";
+// Määritellään salasana ja yhteysosoite tietokantaan
+const passwd = "";
 const uri = "mongodb+srv://m001-student:" + passwd + "mongodb+srv://sandbox.yvhzr.mongodb.net/myFirstDatabase"
 
 
