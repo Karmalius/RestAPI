@@ -1,24 +1,23 @@
 // Määritellään palvelimelle portti.
 const PORT = process.env.PORT || 8081;
 
-// Otetaan express-, ja mongoose-moduulit käyttöön
+// Otetaan express-, ja mongoose-moduulit käyttöön.
 var express = require("express");
-var app = express();
 var mongoose = require("mongoose");
+var app = express();
 
 // bodyParser on nyt osa express- moduulia niin sitä ei tarvitse ottaa erikseen käyttöön!
-// Mahdollistetaan urlencoded tyyppisten post käskyjen luonti
+// Mahdollistetaan urlencoded tyyppiset post käskyt.
 app.use(express.urlencoded({ extended: true }));
-//app.use(express.json());
 
-// Määritellään tietokannan osoite
+// Määritellään tietokannan osoite Herokusta.
 const uri = process.env.DB_URI;
 
-// Yhdistetään tietokantaan
+// Yhdistetään tietokantaan.
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// Tallennetaan tieto yhteyden onnistumisesta muuttujaan
+// Tallennetaan tieto yhteyden onnistumisesta muuttujaan.
 var db = mongoose.connection;
-// Tulostetaan tieto mahdollisesta yhteysvirheestä tai yhteyden onnistumisesta
+// Tulostetaan tieto mahdollisesta yhteysvirheestä tai yhteyden onnistumisesta.
 db.on("error", function () {
   console.log("Can not connect to Mongoose!");
 });
@@ -27,7 +26,7 @@ db.once("open", function () {
   console.log("Connected to Mongoose.");
 });
 
-// Määritellään Ficci-niminen Schema
+// Määritellään Ficci-niminen Schema.
 const Fics = mongoose.model(
   "Ficci",
   {
@@ -44,8 +43,8 @@ const Fics = mongoose.model(
   "potterfics"
 );
 
-// Luodaan reitit ja niiden toiminnallisuudet
-// Tulostetaan kaikki ficit
+// Luodaan reitit ja niiden toiminnallisuudet.
+// Tulostetaan kaikki ficit.
 app.get("/api/getall", function (req, res) {
   Fics.find({}, function (err, results) {
     console.log("Data of all fics was fetched");
@@ -53,7 +52,7 @@ app.get("/api/getall", function (req, res) {
   });
 });
 
-// Tulostetaan ficci id-numeron perusteella
+// Tulostetaan ficci id-numeron perusteella.
 app.get("/api/:id", function (req, res) {
   Fics.find({ _id: req.params.id }, function (err, results) {
     console.log("A fic with id " + req.params.id + " was fetched");
@@ -61,7 +60,7 @@ app.get("/api/:id", function (req, res) {
   });
 });
 
-// Tulostetaan ficci nimen perusteella
+// Tulostetaan ficci nimen perusteella.
 app.get("/api/name/:id", function (req, res) {
   Fics.find({ name: req.params.id }, function (err, results) {
     console.log("A fic with name \"" + req.params.id + "\" was fetched");
@@ -69,9 +68,9 @@ app.get("/api/name/:id", function (req, res) {
   });
 });
 
-// Lisätään yksi ficci
+// Lisätään yksi ficci.
 app.post("/api/add", function (req, res) {
-  // Luodaan uusi tallennettava olio
+  // Luodaan uusi tallennettava olio.
   var newFic = new Fics({
     name: req.body.name,
     series: req.body.series,
@@ -84,7 +83,7 @@ app.post("/api/add", function (req, res) {
     link: req.body.link
   });
 
-  // Tallennetaan olio tietokantaan
+  // Tallennetaan olio tietokantaan.
   newFic.save(function (err, result) {
     if (err) console.log(err);
     console.log("Added a fic called \"" + req.body.name + "\"");
@@ -92,24 +91,23 @@ app.post("/api/add", function (req, res) {
   });
 });
 
-// Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
-// by default, you need to set it to false.
+// Mongoose käyttää tätä oletuksena, joten jos en halua käyttää sitä, pitää tämän olla false.
 mongoose.set('useFindAndModify', false);
 
-// Muokataan ficin tietoja id-numeron perusteella
+// Muokataan ficin tietoja id-numeron perusteella.
 app.put("/api/update/:id", function (req, res) {
   Fics.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
     (err, todo) => {
-      // Handle any possible database errors
+      // Otetaan huomioon errorit ja tulostetaan viesti.
           if (err) return res.status(500).send(err);
           console.log("Updated a fic with id " + req.params.id);
           res.send("Updated a fic with id " + req.params.id);
       })
 });
 
-// Poistetaan ficci id:n perusteella
+// Poistetaan ficci id:n perusteella.
 app.delete("/api/delete/:id", function (req, res) {
-  // Poimitaan id talteen ja välitetään se tietokannan poisto-operaatioon
+  // Poimitaan id talteen ja välitetään se tietokannan poisto-operaatioon.
   var id = req.params.id;
 
   Fics.findByIdAndDelete(id, function (err, results) {
