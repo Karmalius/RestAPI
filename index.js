@@ -96,13 +96,13 @@ mongoose.set('useFindAndModify', false);
 
 // Muokataan ficin tietoja id-numeron perusteella.
 app.put("/api/update/:id", function (req, res) {
-  Fics.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
+  Fics.findByIdAndUpdate(req.params.id, req.body, { new: true },
     (err, todo) => {
       // Otetaan huomioon errorit ja tulostetaan viesti.
-          if (err) return res.status(500).send(err);
-          console.log("Updated a fic with id " + req.params.id);
-          res.send("Updated a fic with id " + req.params.id);
-      })
+      if (err) return res.status(500).send(err);
+      console.log("Updated a fic with id " + req.params.id);
+      res.send("Updated a fic with id " + req.params.id);
+    })
 });
 
 // Poistetaan ficci id:n perusteella.
