@@ -3,7 +3,7 @@
 Infoa:
 
 Tässä projektissa luon REST APIn omasta MongoDB tietokannastani.
-APIssa on kuusi Mongoosella toteutettua reittiä. Kolme GET-reittiä sekä POST-, PUT- ja DELETE- reitit.
+APIssa on kuusi Mongoosella toteutettua reittiä. Kolme GET-reittiä (lista alla) sekä POST-, PUT- ja DELETE- reitit.
 Vastaus on JSON muodossa.
 API testattu POSTMANillä.
 Julkaistu Herokussa:
