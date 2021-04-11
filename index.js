@@ -10,7 +10,7 @@ var app = express();
 // Mahdollistetaan urlencoded tyyppiset post käskyt.
 app.use(express.urlencoded({ extended: true }));
 
-// Määritellään tietokannan osoite Herokusta.
+// Määritellään tietokannan osoite (Herokussa).
 const uri = process.env.DB_URI;
 
 // Yhdistetään tietokantaan.

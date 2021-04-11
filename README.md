@@ -2,8 +2,8 @@
 
 Infoa:
 
-Tässä projektissa luon REST APIn omasta MongoDB tietokannastani.
-APIssa on kuusi Mongoosella toteutettua reittiä. Kolme GET-reittiä sekä POST-, PUT- ja DELETE- reitit.
+Tässä projektissa loin REST APIn omasta MongoDB tietokannastani. Tietokannassa on tallennettuna Harry Potter fanfiction tarinoiden tietoja.
+APIssa on kuusi Mongoosella toteutettua reittiä. Kolme GET-reittiä (lista alla) sekä POST-, PUT- ja DELETE- reitit.
 Vastaus on JSON muodossa.
 API testattu POSTMANillä.
 Julkaistu Herokussa:
