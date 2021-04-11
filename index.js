@@ -63,7 +63,7 @@ app.get("/api/:id", function (req, res) {
 // Tulostetaan ficci nimen perusteella.
 app.get("/api/name/:text", function (req, res) {
   Fics.find({ name: req.params.text }, function (err, results) {
-    console.log("A fic with name \"" + req.params.id + "\" was fetched");
+    console.log("A fic with name \"" + req.params.text + "\" was fetched");
     res.json(results);
   });
 });
