@@ -43,7 +43,16 @@ const Fics = mongoose.model(
   "potterfics"
 );
 
+// Haetaan sisältöä public-hakemistosta.
+app.use(express.static("./public"));
+
 // Luodaan reitit ja niiden toiminnallisuudet.
+
+// Luodaan frontpage-reitti.
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 // Tulostetaan kaikki ficit.
 app.get("/api/getall", function (req, res) {
   Fics.find({}, function (err, results) {
