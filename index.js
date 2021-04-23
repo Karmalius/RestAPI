@@ -6,6 +6,11 @@ var express = require("express");
 var mongoose = require("mongoose");
 var app = express();
 
+// Otetaan käyttöön cors-moduuli, jolla ohitetaan cors-tietoturvarajoitusten tuomat ongelmat.
+var cors = require('cors')
+var app = express()
+app.use(cors())
+
 // bodyParser on nyt osa express- moduulia niin sitä ei tarvitse ottaa erikseen käyttöön!
 // Mahdollistetaan urlencoded tyyppiset post käskyt.
 app.use(express.urlencoded({ extended: true }));
