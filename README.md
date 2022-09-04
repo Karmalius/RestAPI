@@ -1,5 +1,8 @@
 # RestAPI
 
+HUOM! MongoDB tietokanta ei ole enää käytössä, joten tiedon haku ei onnistu!
+NOTICE! MongoDB database not in use anymore!
+
 Infoa:
 
 Tässä projektissa loin REST APIn omasta MongoDB tietokannastani. Tietokannassa on tallennettuna Harry Potter fanfiction tarinoiden tietoja.
